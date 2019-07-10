@@ -3,6 +3,12 @@ import React, { Component } from "react";
 import TechItem from "./TechItem";
 
 class TechList extends Component {
+  // static defaultprops = {
+  //   tech: "Oculto"
+  // };
+
+  // static propTypes = {}
+
   // estados para o componente
   state = {
     newTech: "",
@@ -56,6 +62,7 @@ class TechList extends Component {
               onDelete={() => this.handleDelete(tech)}
             />
           ))}
+          {/* <TechItem /> */}
         </ul>
         {/* uma boa prática para inputs é passar o value com o estado, pois se o valor do estado sofrer alterações por outros motivos, ele também será alterado */}
         <input

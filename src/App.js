@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 
-import profile from "./assets/Kuramon.png";
+import TechList from "./components/TechList";
 
 function App() {
-  return <img width="200" src={profile} alt="Kuramon" />;
+  return <TechList />;
 }
 
 export default App;

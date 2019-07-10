@@ -1,19 +1,58 @@
 import React, { Component } from "react";
 
 class TechList extends Component {
+  // estados para o componente
   state = {
+    newTech: "",
     techs: ["Node.js", "ReactJS", "React Native"]
   };
 
+  // Funções próprias, que não são do react, devem ser arrow functions
+  // caso contrário, a função não teria acesso ao this do componente e estado
+  handleInputChange = e => {
+    // console.log(e.target.value);
+
+    // caso utilizemos:
+    /**
+     this.state.newTech = e.target.value
+     */
+    // não funcionaria pois o state é imutável
+
+    // para criar ou alterar estados no react, deve-se usar o setState()
+    this.setState({ newTech: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.setState({
+      techs: [...this.state.techs, this.state.newTech],
+      newTech: ""
+    });
+
+    // console.log(this.state.newTech);
+  };
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
-      <ul>
-        <li>Node.js</li>
-        <li>ReactJS</li>
-        <li>React Native</li>
-      </ul>
+      // div fragment <> </>
+      <form onSubmit={this.handleSubmit}>
+        <h1>{this.state.newTech}</h1>
+        <ul>
+          {this.state.techs.map(tech => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+        {/* uma boa prática para inputs é passar o value com o estado, pois se o valor do estado sofrer alterações por outros motivos, ele também será alterado */}
+        <input
+          type="text"
+          onChange={this.handleInputChange}
+          value={this.state.newTech}
+        />
+        <button type="submit">Enviar</button>
+      </form>
     );
   }
 }

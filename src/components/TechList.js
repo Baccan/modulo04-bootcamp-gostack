@@ -33,6 +33,12 @@ class TechList extends Component {
     // console.log(this.state.newTech);
   };
 
+  handleDelete = tech => {
+    // console.log(tech);
+
+    this.setState({ techs: this.state.techs.filter(t => t !== tech) });
+  };
+
   render() {
     // console.log(this.state);
 
@@ -42,7 +48,12 @@ class TechList extends Component {
         <h1>{this.state.newTech}</h1>
         <ul>
           {this.state.techs.map(tech => (
-            <li key={tech}>{tech}</li>
+            <li key={tech}>
+              {tech}
+              <button onClick={() => this.handleDelete(tech)} type="button">
+                Remover
+              </button>
+            </li>
           ))}
         </ul>
         {/* uma boa prática para inputs é passar o value com o estado, pois se o valor do estado sofrer alterações por outros motivos, ele também será alterado */}
